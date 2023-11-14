@@ -1,0 +1,6 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Connector_Jing")(type "KiCad")(uri "${KIPRJMOD}/lib/Connector_Jing.pretty")(options "")(descr ""))
+  (lib (name "Package_QFN_Silergy")(type "KiCad")(uri "${KIPRJMOD}/lib/Package_QFN_Silergy.pretty")(options "")(descr ""))
+  (lib (name "Package_DFN_FET")(type "KiCad")(uri "${KIPRJMOD}/lib/Package_DFN_FET.pretty")(options "")(descr ""))
+)
