@@ -86,6 +86,7 @@ module pcb() {
     };
     translate([0, 0, 1.6]) {
         translate([0.5, 0.5, 0]) cube([84 - 1, 81 - 1, 2]); // Various components
+        translate([39.2, 2.65, 0]) linear_extrude(3) square([7, 3.4], center = true); // TVS
         translate([30.68, 3.59, 0]) upstream_port();
         translate([12, 13.75, 0]) {
             for (y = [ 0 : 4 ]) {
