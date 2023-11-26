@@ -1,8 +1,8 @@
 $fn = 100;
 
 module usb_port(depth=9.3) {
-    width = 8.94;
-    height = 3.02;
+    width = 8.94 + 0.1;
+    height = 3.02 + 0.1;
     color("#bbb") linear_extrude(depth) {
         translate([-(width - height / 2) / 2, 0, 0]) {
             translate([0, height / 4, 0]) circle(d=height/2);
@@ -21,8 +21,8 @@ module usb_port(depth=9.3) {
 }
 
 module upstream_port(depth=7.35) {
-    width = 8.94;
-    height = 3.16;
+    width = 8.94 + 0.1;
+    height = 3.16 + 0.1;
     color("#bbb") translate([-width/2, -4.84 - (depth - 7.35), 0]) {
         translate([height/4, 0, height/4]) {
             translate([0, depth/2, 0]) rotate([90, 0, 0]) cylinder(depth, d=height/2, center=true);
@@ -38,8 +38,8 @@ module upstream_port(depth=7.35) {
 }
 
 module led(depth = 9.3) {
-    cylinder(depth, d=3);
-    cylinder(depth - 4.2 - (depth - 9.3), d=4);
+    cylinder(depth, d=3 + 0.1);
+    cylinder(depth - 4.2 - (depth - 9.3), d=4 + 0.1);
 }
 
 module port_with_led(depth=9.3) {
@@ -49,7 +49,7 @@ module port_with_led(depth=9.3) {
 
 module inductor() {
     color("#777") linear_extrude(3) {
-        square([7.1, 6.6], center = true);
+        square([7.1 + 0.2, 6.6 + 0.2], center = true);
     }
 }
 
@@ -57,7 +57,7 @@ module capacitor() {
     color("black") linear_extrude(2) {
         square(6.6, center = true);
     }
-    color("#ccccff") cylinder(7.7, d=6.3);
+    color("#ccccff") cylinder(7.7 + 0.5, d=6.3 + 0.7);
 }
 
 module port_row(depth=9.3) {
@@ -81,8 +81,8 @@ module port_row(depth=9.3) {
 
 module pcb() {
     difference() {
-        color("green") cube([84, 81, 1.6]); // PCB base material
-        translate([29.6, 39.45, 0]) cylinder(h=1.6, d=3.2);
+        color("green") translate([-0.1, - 0.1, 0]) cube([84 + 0.2, 81 + 0.2, 1.6 + 0.05]); // PCB base material
+        translate([29.6, 39.45, 0]) cylinder(h=1.6, d=3.2 - 0.1);
     };
     translate([0, 0, 1.6]) {
         translate([0.5, 0.5, 0]) cube([84 - 1, 81 - 1, 2]); // Various components
@@ -118,7 +118,7 @@ module pcb_for_shell() {
 
 module pcb_for_bottom_shell() {
     pcb_for_shell();
-    translate([0, 0, 1.6]) cube([84, 81, 5]); // Ensure no overlap over PCB
+    translate([-0.1, - 0.1, 1.6]) cube([84 + 0.2, 81 + 0.2, 5]); // Ensure no overlap over PCB
     translate([-1, -1, 1.6]) cube([84 + 2, 81 + 2, 5]); // Ensure no overlap over PCB
 }
 
@@ -172,12 +172,21 @@ module features() {
     }
 }
 
+module cutouts() {
+        translate([0, 0, 2]) {
+                translate([2, 8, 0]) cube([3, 75, 10]);
+                translate([100 - 3- 2, 8, 0]) cube([3, 75, 10]);
+                translate([8, 91 - 3 - 2, 0]) cube([83, 3, 10]);
+        }
+}
+
 module bottom_shell() {
     difference() {
         color("#ddd") rounded_rect(100, 91, 4 + 1.6 + 3.16 / 2, 5);
         union() {
             features();
             translate([8, 2, 4]) pcb_for_bottom_shell();
+            cutouts();
         }
     }
 }
@@ -195,6 +204,6 @@ module top_shell() {
 
 //rounded_rect(100, 100, 10, 5);
 bottom_shell();
-top_shell();
+//top_shell();
 //translate([8, 2, 4]) pcb();
 //features();
