@@ -819,7 +819,7 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid b164e4c1-3748-4003-b6b4-a5a8bf422883)
   )
-  (text "1MHz" (at 83.82 64.77 0)
+  (text "650KHz" (at 85.09 64.77 0)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid b5132f20-871e-4491-951a-7465ceb79063)
   )
@@ -1041,7 +1041,7 @@
     (property "Reference" "U2" (at 91.44 50.8 0) (do_not_autoplace)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "AOZ1267QI" (at 96.52 64.77 90) (do_not_autoplace)
+    (property "Value" "AOZ1268QI" (at 96.52 64.77 90) (do_not_autoplace)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "Package_QFN_Silergy:QFN-23L" (at 97.79 64.77 0)
@@ -1050,7 +1050,7 @@
     (property "Datasheet" "https://datasheet.lcsc.com/lcsc/2202011530_Alpha---Omega-Semicon-AOZ1267QI-01_C2072015.pdf" (at 97.79 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "LCSC" "C2072015" (at 96.52 64.77 0)
+    (property "LCSC" "C2072052" (at 96.52 64.77 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 04d0072e-53c9-40ae-ac16-6cf5a4dc6ebc))
@@ -1243,7 +1243,7 @@
     (property "Reference" "R5" (at 83.5914 59.7479 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "200k" (at 83.5914 62.1721 0)
+    (property "Value" "300k" (at 83.5914 62.1721 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 85.09 60.96 0)
@@ -1252,7 +1252,7 @@
     (property "Datasheet" "~" (at 85.09 60.96 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "LCSC" "C25764" (at 85.09 60.96 0)
+    (property "LCSC" "C25774" (at 85.09 60.96 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 1e01c329-0c27-4199-ae61-cc48eaadffc8))
@@ -1784,7 +1784,7 @@
     (property "Reference" "L1" (at 111.76 60.2469 90)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "3.3uH" (at 111.76 62.6711 90)
+    (property "Value" "4.7uH" (at 111.76 62.6711 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "Inductor_SMD:L_Sunlord_MWSA0605S" (at 111.76 64.77 0)
@@ -1793,7 +1793,7 @@
     (property "Datasheet" "https://datasheet.lcsc.com/lcsc/1912111437_Cybermax-CMLO0650H3R3MTT_C439008.pdf" (at 111.76 64.77 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "LCSC" "C439008" (at 111.76 64.77 90)
+    (property "LCSC" "C5127340" (at 111.76 64.77 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid e541ecf2-9f1e-4820-8330-9402d699333d))
@@ -2247,7 +2247,7 @@
   (symbol (lib_id "Device:C_Polarized_Small") (at 45.72 60.96 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ee0b58cc-9001-43e5-bbd2-7e99a487074f)
-    (property "Reference" "C95" (at 43.561 59.2018 0)
+    (property "Reference" "C99" (at 43.561 59.2018 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100uF" (at 43.561 61.626 0)
@@ -2266,8 +2266,8 @@
     (pin "2" (uuid e7cb762c-3b7f-4d77-8d12-bff113604f72))
     (instances
       (project "blinkekatze-charger"
-        (path "/a4c83f07-e6dc-4ad0-8aa6-6b71a78e32ce/3d5b6656-6e81-40f3-b133-b74cbe8a1a8e/bc89cb18-cfa0-4cee-8400-ad9dff66e1fc"
-          (reference "C95") (unit 1)
+        (path "/a4c83f07-e6dc-4ad0-8aa6-6b71a78e32ce/3d5b6656-6e81-40f3-b133-b74cbe8a1a8e/d7100263-9cf2-4938-96b2-99cba6643152"
+          (reference "C99") (unit 1)
         )
         (path "/a4c83f07-e6dc-4ad0-8aa6-6b71a78e32ce/a1fd3f37-ad5d-4a2d-a1b3-98458d01367f"
           (reference "C149") (unit 1)
@@ -2302,11 +2302,11 @@
         (path "/a4c83f07-e6dc-4ad0-8aa6-6b71a78e32ce/3d5b6656-6e81-40f3-b133-b74cbe8a1a8e/7efa8f4f-baad-4bce-a4e9-294a84b43de4"
           (reference "C103") (unit 1)
         )
+        (path "/a4c83f07-e6dc-4ad0-8aa6-6b71a78e32ce/3d5b6656-6e81-40f3-b133-b74cbe8a1a8e/bc89cb18-cfa0-4cee-8400-ad9dff66e1fc"
+          (reference "C95") (unit 1)
+        )
         (path "/a4c83f07-e6dc-4ad0-8aa6-6b71a78e32ce/aa9adb17-04fc-4f4d-b63f-9f3070b9c139/d7100263-9cf2-4938-96b2-99cba6643152"
           (reference "C80") (unit 1)
-        )
-        (path "/a4c83f07-e6dc-4ad0-8aa6-6b71a78e32ce/3d5b6656-6e81-40f3-b133-b74cbe8a1a8e/d7100263-9cf2-4938-96b2-99cba6643152"
-          (reference "C99") (unit 1)
         )
         (path "/a4c83f07-e6dc-4ad0-8aa6-6b71a78e32ce/aa9adb17-04fc-4f4d-b63f-9f3070b9c139/8e7f0fe5-d4b7-45a3-bbd4-fe7a1014c485"
           (reference "C72") (unit 1)
