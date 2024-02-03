@@ -2,6 +2,8 @@
 
 $fn = 100;
 
+bottom_thickness = 1.5;
+
 module usb_port(depth=9.3) {
     width = 8.94 + 0.5;
     height = 3.02 + 0.6;
@@ -84,7 +86,7 @@ module port_row(depth=9.3) {
 module pcb() {
     difference() {
         color("green") translate([-0.3, - 0.3, 0]) cube([84 + 0.6, 81 + 0.6, 1.6 + 0.1]); // PCB base material
-        translate([29.6, 39.45, 0]) cylinder(h=1.6, d=3.2 - 0.7);
+        translate([29.6, 39.45, 0]) cylinder(h=1.6, d=3.2 - 0.7); // Alignment hole
     };
     translate([0, 0, 1.6]) {
         translate([0.5, 0.5, 0]) cube([84 - 1, 81 - 1, 2]); // Various components
@@ -97,10 +99,10 @@ module pcb() {
             }
         }
     }
-    translate([0, 0, -2]) {
+    translate([0, 0, -1]) { // Bottom clearance
         difference() {
-            translate([0.5, 0.5, 0]) cube([84 - 1, 81 - 1, 2]); // Various components
-            translate([29.6, 39.45, 0]) cylinder(h=2, d=3.2);
+            translate([0.5, 0.5, 0]) cube([84 - 1, 81 - 1, 1]); // Various components
+            translate([29.6, 39.45, 0]) cylinder(h=1, d=3.2);
         }
     }
 }
@@ -175,19 +177,24 @@ module features() {
 }
 
 module cutouts() {
-        translate([0, 0, 2]) {
-                translate([2, 8, 0]) cube([3, 75, 11]);
-                translate([100 - 3- 2, 8, 0]) cube([3, 75, 11]);
-                translate([8, 91 - 3 - 2, 0]) cube([83, 3, 11]);
+        translate([0, 0, bottom_thickness]) {
+                translate([2, 9, 0]) cube([3, 73, 11]);
+                translate([100 - 3 - 2, 9, 0]) cube([3, 73, 11]);
+                translate([9, 91 - 3 - 2, 0]) cube([81, 3, 11]);
+        }
+        translate([0, 0, bottom_thickness + 1 + 1.6]) {
+                translate([2 + 3, 9, 0]) cube([3, 73, 11]);
+                translate([100 - 3 - 2 - 3, 9, 0]) cube([3, 73, 11]);
+                translate([9, 91 - 3 - 2 - 3, 0]) cube([81, 3, 11]);
         }
 }
 
 module bottom_shell() {
     difference() {
-        color("#ddd") rounded_rect(100, 91, 4 + 1.6 + 3.16 / 2, 5);
+        color("#ddd") rounded_rect(100, 91, bottom_thickness + 1 + 1.6 + 3.16 / 2, 5);
         union() {
             features();
-            translate([8, 2, 4]) pcb_for_bottom_shell();
+            translate([8, 2, bottom_thickness + 1]) pcb_for_bottom_shell();
             cutouts();
         }
     }
