@@ -178,14 +178,14 @@ module features() {
 
 module cutouts() {
         translate([0, 0, bottom_thickness]) {
-                translate([2, 9, 0]) cube([3, 73, 11]);
-                translate([100 - 3 - 2, 9, 0]) cube([3, 73, 11]);
-                translate([9, 91 - 3 - 2, 0]) cube([81, 3, 11]);
+                translate([1.5, 9, 0]) cube([4.5, 73, 11]);
+                translate([100 - 4.5 - 1.5, 9, 0]) cube([4.5, 73, 11]);
+                translate([9, 91 - 4.5 - 1.5, 0]) cube([81, 4.5, 11]);
         }
         translate([0, 0, bottom_thickness + 1 + 1.6]) {
-                translate([2 + 3, 9, 0]) cube([3, 73, 11]);
-                translate([100 - 3 - 2 - 3, 9, 0]) cube([3, 73, 11]);
-                translate([9, 91 - 3 - 2 - 3, 0]) cube([81, 3, 11]);
+                translate([1.5 + 4.5, 9, 0]) cube([4.5, 73, 11]);
+                translate([100 - 3 - 1.5 - 4.5, 9, 0]) cube([4.5, 73, 11]);
+                translate([9, 91 - 3 - 1.5 - 4.5, 0]) cube([81, 4.5, 11]);
         }
 }
 
