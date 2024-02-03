@@ -1,8 +1,10 @@
+// Typically the ID on JLC SLM prints seems to be ~0.37mm undersized
+
 $fn = 100;
 
 module usb_port(depth=9.3) {
-    width = 8.94 + 0.1;
-    height = 3.02 + 0.1;
+    width = 8.94 + 0.5;
+    height = 3.02 + 0.6;
     color("#bbb") linear_extrude(depth) {
         translate([-(width - height / 2) / 2, 0, 0]) {
             translate([0, height / 4, 0]) circle(d=height/2);
@@ -21,8 +23,8 @@ module usb_port(depth=9.3) {
 }
 
 module upstream_port(depth=7.35) {
-    width = 8.94 + 0.1;
-    height = 3.16 + 0.1;
+    width = 8.94 + 0.6;
+    height = 3.16 + 0.2;
     color("#bbb") translate([-width/2, -4.84 - (depth - 7.35), 0]) {
         translate([height/4, 0, height/4]) {
             translate([0, depth/2, 0]) rotate([90, 0, 0]) cylinder(depth, d=height/2, center=true);
@@ -81,8 +83,8 @@ module port_row(depth=9.3) {
 
 module pcb() {
     difference() {
-        color("green") translate([-0.1, - 0.1, 0]) cube([84 + 0.2, 81 + 0.2, 1.6 + 0.05]); // PCB base material
-        translate([29.6, 39.45, 0]) cylinder(h=1.6, d=3.2 - 0.1);
+        color("green") translate([-0.3, - 0.3, 0]) cube([84 + 0.6, 81 + 0.6, 1.6 + 0.1]); // PCB base material
+        translate([29.6, 39.45, 0]) cylinder(h=1.6, d=3.2 - 0.7);
     };
     translate([0, 0, 1.6]) {
         translate([0.5, 0.5, 0]) cube([84 - 1, 81 - 1, 2]); // Various components
@@ -118,8 +120,8 @@ module pcb_for_shell() {
 
 module pcb_for_bottom_shell() {
     pcb_for_shell();
-    translate([-0.1, - 0.1, 1.6]) cube([84 + 0.2, 81 + 0.2, 5]); // Ensure no overlap over PCB
-    translate([-1, -1, 1.6]) cube([84 + 2, 81 + 2, 5]); // Ensure no overlap over PCB
+    translate([-0.1, - 0.3, 1.6 + 0.3]) cube([84 + 0.6, 81 + 0.6, 5]); // Ensure no overlap over PCB
+    translate([-1, -1, 1.6 + 0.1]) cube([84 + 2, 81 + 2, 5]); // Ensure no overlap over PCB
 }
 
 module pcb_for_top_shell() {
@@ -148,12 +150,12 @@ module hexagon(h, r) {
 }
 
 module hex_nut() {
-    hexagon(2.35, 3.1);
+    hexagon(2.35 + 0.5, 3.1 + 0.3);
 }
 
 module hex_screw() {
-    translate([0, 0, 12]) cylinder(3.1, d=5.5);
-    cylinder(12, d=3.2);
+    translate([0, 0, 12]) cylinder(3.1, d=5.5 + 0.2);
+    cylinder(12, d=3.2 + 0.2);
 }
 
 module hex_screw_nut() {
@@ -174,9 +176,9 @@ module features() {
 
 module cutouts() {
         translate([0, 0, 2]) {
-                translate([2, 8, 0]) cube([3, 75, 10]);
-                translate([100 - 3- 2, 8, 0]) cube([3, 75, 10]);
-                translate([8, 91 - 3 - 2, 0]) cube([83, 3, 10]);
+                translate([2, 8, 0]) cube([3, 75, 11]);
+                translate([100 - 3- 2, 8, 0]) cube([3, 75, 11]);
+                translate([8, 91 - 3 - 2, 0]) cube([83, 3, 11]);
         }
 }
 
@@ -193,17 +195,32 @@ module bottom_shell() {
 
 module top_shell() {
     difference() {
-        color("#ddd") translate([0, 0, 2]) rounded_rect(100, 91, 15 - 2, 5);
+        translate([-100 / 2, -91 / 2, 0]) color("#ddd") translate([0, 0, 2]) intersection() { cube([200, 200, 15 - 2 - 6 + 200]); rounded_rect(100, 91, 15 - 2, 5); }
         union() {
-            features();
-            bottom_shell();
-            translate([8, 2, 4]) pcb_for_top_shell();
+            translate([-100 / 2, -91 / 2, 0]) union() {
+                features();
+                //scale([0.99, 0.99, 1]) bottom_shell();
+                bottom_shell();
+                translate([8, 2, 4]) pcb_for_top_shell();
+                //translate([8, 2, 4]) scale([1.01, 1.01, 1.01]) pcb_for_top_shell();
+                cutouts();
+                translate([8 + 1, 2 + 1, 4]) {
+                    difference() {
+                        cube([84 - 2, 81 - 2, 9]);
+                        translate([20, 0, 0]) cube([20, 10, 30]);
+                    }
+                }
+            }
+            scale([0.99, 0.99, 1]) translate([-100 / 2, -91 / 2, 0]) bottom_shell();
+            //translate([8, 2, 4]) scale([1.01, 1.01, 1.01]) translate([-100 / 2, -91 / 2, 0]) pcb_for_top_shell();
         }
     }
 }
 
 //rounded_rect(100, 100, 10, 5);
 bottom_shell();
-//top_shell();
+//rotate([180, 0, 0]) top_shell();
+//rotate([180, 0, 0]) intersection() { top_shell(); translate([8, 2, 4 + 9]) cube([84, 81, 9]); }
+
 //translate([8, 2, 4]) pcb();
 //features();
